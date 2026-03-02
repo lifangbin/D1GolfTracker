@@ -12,6 +12,7 @@ enum MilestoneCategory {
   skill,
   academic,
   recruiting,
+  mental,
 }
 
 /// A milestone definition (pre-defined per phase)
@@ -82,6 +83,8 @@ extension MilestoneCategoryX on MilestoneCategory {
         return 'Academic';
       case MilestoneCategory.recruiting:
         return 'Recruiting';
+      case MilestoneCategory.mental:
+        return 'Mental';
     }
   }
 
@@ -99,6 +102,8 @@ extension MilestoneCategoryX on MilestoneCategory {
         return Icons.school;
       case MilestoneCategory.recruiting:
         return Icons.connect_without_contact;
+      case MilestoneCategory.mental:
+        return Icons.psychology;
     }
   }
 
@@ -116,6 +121,8 @@ extension MilestoneCategoryX on MilestoneCategory {
         return const Color(0xFF607D8B);
       case MilestoneCategory.recruiting:
         return const Color(0xFFE91E63);
+      case MilestoneCategory.mental:
+        return const Color(0xFF00BCD4);
     }
   }
 }
