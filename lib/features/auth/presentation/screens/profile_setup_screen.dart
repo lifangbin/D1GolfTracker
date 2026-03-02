@@ -173,7 +173,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
               children: [
                 // Welcome message
                 Text(
-                  'Welcome to HappyGolf!',
+                  'Welcome to D1 Golf Tracker!',
                   style: AppTextStyles.headlineLarge,
                   textAlign: TextAlign.center,
                 ),

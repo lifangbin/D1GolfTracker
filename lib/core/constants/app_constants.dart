@@ -3,7 +3,7 @@ class AppConstants {
   AppConstants._();
 
   // App Info
-  static const String appName = 'HappyGolf';
+  static const String appName = 'D1 Golf Tracker';
   static const String appVersion = '1.0.0';
 
   // Supabase Configuration

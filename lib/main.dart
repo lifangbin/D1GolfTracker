@@ -29,7 +29,7 @@ void main() async {
 
   runApp(
     const ProviderScope(
-      child: HappyGolfApp(),
+      child: D1GolfTrackerApp(),
     ),
   );
 }

@@ -23,7 +23,7 @@ class DashboardScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HappyGolf'),
+        title: const Text('D1 Golf Tracker'),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
