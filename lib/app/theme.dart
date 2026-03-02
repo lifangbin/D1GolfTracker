@@ -10,7 +10,7 @@ class AppColors {
   static const Color primaryLight = Color(0xFF60AD5E);
   static const Color primaryDark = Color(0xFF005005);
 
-  // Secondary: Navy Blue (D1 collegiate feel)
+  // Secondary: Navy Blue
   static const Color secondary = Color(0xFF1A237E);
   static const Color secondaryLight = Color(0xFF534BAE);
   static const Color secondaryDark = Color(0xFF000051);

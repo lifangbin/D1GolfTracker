@@ -160,8 +160,8 @@ class AcademicProfile with _$AcademicProfile {
     String? notes,
   }) = _AcademicProfile;
 
-  /// NCAA eligibility check (D1 requires 2.3 core GPA minimum)
-  bool get meetsNcaaMinimum => cumulativeGpa >= 2.3;
+  /// Academic eligibility check (good academic standing requires 2.3 GPA minimum)
+  bool get meetsAcademicMinimum => cumulativeGpa >= 2.3;
 
   /// Formatted GPA
   String get formattedCumulativeGpa => cumulativeGpa.toStringAsFixed(2);
@@ -181,11 +181,11 @@ class AcademicProfile with _$AcademicProfile {
   }
 }
 
-/// NCAA Core Course Requirements
-class NcaaEligibility {
-  NcaaEligibility._();
+/// Academic Standing Requirements
+class AcademicStanding {
+  AcademicStanding._();
 
-  // D1 requires 16 core courses
+  // Recommended core courses
   static const int requiredCoreCourses = 16;
 
   // Breakdown
@@ -196,10 +196,6 @@ class NcaaEligibility {
   static const int socialScienceCourses = 2;
   static const int additionalCoreCourses = 4;
 
-  // Minimum GPA for D1
+  // Minimum GPA for good standing
   static const double minimumCoreGpa = 2.3;
-
-  // SAT/ACT minimums vary by sliding scale
-  static const int minimumSat = 400;
-  static const int minimumAct = 37;
 }

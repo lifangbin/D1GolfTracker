@@ -1,4 +1,4 @@
-package com.d1golf.d1_golf_tracker
+package com.happygolf.app
 
 import io.flutter.embedding.android.FlutterActivity
 

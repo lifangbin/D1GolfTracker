@@ -1,6 +1,6 @@
-# d1_golf_tracker
+# HappyGolf
 
-A new Flutter project.
+A Flutter app to track your junior golfer's development journey.
 
 ## Getting Started
 

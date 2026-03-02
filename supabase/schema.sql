@@ -1,4 +1,4 @@
--- D1 Golf Tracker Database Schema
+-- HappyGolf Database Schema
 -- Run this in Supabase SQL Editor (Dashboard > SQL Editor > New query)
 
 -- Enable UUID extension

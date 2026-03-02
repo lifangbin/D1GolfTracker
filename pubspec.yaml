@@ -1,5 +1,5 @@
-name: d1_golf_tracker
-description: "D1 Golf Scholarship Tracker - Track your junior golfer's journey to NCAA Division 1"
+name: happy_golf
+description: "HappyGolf - Track your junior golfer's development journey"
 publish_to: 'none'
 version: 1.0.0+1
 

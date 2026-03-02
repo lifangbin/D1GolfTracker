@@ -76,7 +76,7 @@ class AcademicScreen extends ConsumerWidget {
 
         const SizedBox(height: AppSpacing.lg),
 
-        // NCAA Eligibility Status
+        // Academic Standing Status
         _buildEligibilityCard(profile),
 
         const SizedBox(height: AppSpacing.lg),
