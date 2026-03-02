@@ -1,0 +1,102 @@
+name: d1_golf_tracker
+description: "D1 Golf Scholarship Tracker - Track your junior golfer's journey to NCAA Division 1"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+
+  # Backend - Supabase
+  supabase_flutter: ^2.8.0
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Navigation
+  go_router: ^15.0.0
+
+  # Media Handling (minimal for MVP)
+  image_picker: ^1.1.2
+  cached_network_image: ^3.4.1
+
+  # Charts & Analytics
+  fl_chart: ^1.0.0
+
+  # Local Storage / Cache
+  shared_preferences: ^2.3.3
+  path_provider: ^2.1.4
+  hive_flutter: ^1.1.0
+
+  # PDF Export
+  pdf: ^3.11.0
+  printing: ^5.13.2
+
+  # HTTP Client
+  dio: ^5.7.0
+  http: ^1.2.2
+
+  # WebView for GA Connect
+  webview_flutter: ^4.10.0
+
+  # Utilities
+  intl: ^0.19.0
+  uuid: ^4.5.1
+  equatable: ^2.0.7
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+  # Code Generation
+  build_runner: ^2.4.13
+  riverpod_generator: ^2.6.2
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
+
+  # App Icon & Splash Screen
+  flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.3
+
+# App Icon Configuration
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  adaptive_icon_background: "#2E7D32"
+  adaptive_icon_foreground: "assets/icons/app_icon_foreground.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  web:
+    generate: false
+
+# Native Splash Screen Configuration
+flutter_native_splash:
+  color: "#2E7D32"
+  image: "assets/icons/splash_logo.png"
+  color_dark: "#1B5E20"
+  image_dark: "assets/icons/splash_logo.png"
+  android_12:
+    color: "#2E7D32"
+    icon_background_color: "#2E7D32"
+    image: "assets/icons/splash_logo.png"
+  ios: true
+  android: true
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
