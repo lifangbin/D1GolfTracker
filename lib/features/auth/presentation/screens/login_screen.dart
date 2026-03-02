@@ -204,7 +204,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         // Subtitle
         Text(
           _isSignUp
-              ? 'Start tracking your D1 journey'
+              ? 'Start tracking your golf journey'
               : 'Sign in to continue your journey',
           style: AppTextStyles.bodyMedium.copyWith(
             color: AppColors.textSecondary,

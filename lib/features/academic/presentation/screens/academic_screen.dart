@@ -21,7 +21,7 @@ class AcademicScreen extends ConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline),
-            onPressed: () => _showNcaaInfo(context),
+            onPressed: () => _showAcademicInfo(context),
           ),
         ],
       ),
@@ -111,7 +111,7 @@ class AcademicScreen extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.sm),
             Text(
-              'Add your course grades to track\nyour GPA and NCAA eligibility',
+              'Add your course grades to track\nyour academic progress',
               textAlign: TextAlign.center,
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.textHint,
@@ -124,7 +124,7 @@ class AcademicScreen extends ConsumerWidget {
   }
 
   Widget _buildEligibilityCard(AcademicProfile profile) {
-    final isEligible = profile.meetsNcaaMinimum;
+    final isGood = profile.cumulativeGpa >= 3.0;
 
     return Card(
       child: Padding(
@@ -134,14 +134,14 @@ class AcademicScreen extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: isEligible
+                color: isGood
                     ? AppColors.success.withValues(alpha: 0.1)
                     : AppColors.warning.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(
-                isEligible ? Icons.check_circle : Icons.warning,
-                color: isEligible ? AppColors.success : AppColors.warning,
+                isGood ? Icons.check_circle : Icons.trending_up,
+                color: isGood ? AppColors.success : AppColors.warning,
                 size: 28,
               ),
             ),
@@ -151,15 +151,15 @@ class AcademicScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'NCAA D1 Eligibility',
+                    'Academic Standing',
                     style: AppTextStyles.titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    isEligible
-                        ? 'Your GPA meets the minimum requirement (2.3)'
-                        : 'GPA below minimum (${profile.formattedCumulativeGpa} / 2.3)',
+                    isGood
+                        ? 'Great academic performance!'
+                        : 'Keep working to improve your GPA',
                     style: AppTextStyles.bodySmall.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -287,43 +287,41 @@ class AcademicScreen extends ConsumerWidget {
     );
   }
 
-  void _showNcaaInfo(BuildContext context) {
+  void _showAcademicInfo(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('NCAA D1 Requirements'),
+        title: const Text('Academic Tracking'),
         content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Core Course Requirements:',
+                'Why Track Academics?',
                 style: AppTextStyles.titleSmall.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text('• 4 years of English'),
-              const Text('• 3 years of Math (Algebra I or higher)'),
-              const Text('• 2 years of Natural/Physical Science'),
-              const Text('• 1 additional English, Math, or Science'),
-              const Text('• 2 years of Social Science'),
-              const Text('• 4 additional core courses'),
+              const Text('• Balance golf and education'),
+              const Text('• Monitor academic progress'),
+              const Text('• Track GPA over time'),
+              const Text('• Stay organized with course grades'),
               const SizedBox(height: 16),
               Text(
-                'Minimum Requirements:',
+                'GPA Goals:',
                 style: AppTextStyles.titleSmall.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text('• Core GPA: 2.3 minimum'),
-              const Text('• SAT: 400 minimum (combined)'),
-              const Text('• ACT: 37 minimum (sum score)'),
+              const Text('• 3.0+ : Strong academic standing'),
+              const Text('• 3.5+ : Excellent performance'),
+              const Text('• 4.0  : Outstanding achievement'),
               const SizedBox(height: 8),
               const Text(
-                'Note: Higher GPA allows for lower test scores (sliding scale).',
+                'Tip: Maintaining good grades shows dedication and discipline.',
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
             ],

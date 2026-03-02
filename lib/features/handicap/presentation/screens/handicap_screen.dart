@@ -295,7 +295,7 @@ class _HandicapScreenState extends ConsumerState<HandicapScreen> {
 
     // Calculate target line based on current phase
     final player = ref.watch(currentPlayerProvider).value;
-    final targetHandicap = D1Benchmarks.handicapByPhase[player?.currentPhase ?? 1] ?? 18.0;
+    final targetHandicap = EliteBenchmarks.handicapByPhase[player?.currentPhase ?? 1] ?? 18.0;
 
     return AppCard(
       margin: EdgeInsets.zero,
@@ -407,7 +407,7 @@ class _HandicapScreenState extends ConsumerState<HandicapScreen> {
   }
 
   Widget _buildTargetProgress(BuildContext context, double? currentHandicap, int currentPhase) {
-    final targetHandicap = D1Benchmarks.handicapByPhase[currentPhase] ?? 18.0;
+    final targetHandicap = EliteBenchmarks.handicapByPhase[currentPhase] ?? 18.0;
     final phaseName = DevelopmentPhase.getPhase(currentPhase).name;
 
     if (currentHandicap == null) {
@@ -435,7 +435,7 @@ class _HandicapScreenState extends ConsumerState<HandicapScreen> {
 
     // Calculate progress (inverse because lower is better)
     final previousTarget = currentPhase > 1
-        ? D1Benchmarks.handicapByPhase[currentPhase - 1] ?? 36.0
+        ? EliteBenchmarks.handicapByPhase[currentPhase - 1] ?? 36.0
         : 54.0;
     final totalRange = previousTarget - targetHandicap;
     final progress = ((previousTarget - currentHandicap) / totalRange).clamp(0.0, 1.0);

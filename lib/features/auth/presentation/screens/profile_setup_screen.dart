@@ -82,7 +82,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
     if (age <= 10) return 'Phase 1: Foundation (Ages 8-10)';
     if (age <= 13) return 'Phase 2: Development (Ages 11-13)';
     if (age <= 15) return 'Phase 3: Competition (Ages 14-15)';
-    return 'Phase 4: Recruitment (Ages 16-18)';
+    return 'Phase 4: Elite (Ages 16-18)';
   }
 
   Future<void> _submitForm() async {
@@ -173,7 +173,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
               children: [
                 // Welcome message
                 Text(
-                  'Welcome to D1 Golf Tracker!',
+                  'Welcome to HappyGolf!',
                   style: AppTextStyles.headlineLarge,
                   textAlign: TextAlign.center,
                 ),

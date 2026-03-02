@@ -39,7 +39,7 @@ class SplashScreen extends StatelessWidget {
 
             // App Name
             Text(
-              'D1 Golf Tracker',
+              'HappyGolf',
               style: AppTextStyles.displayMedium.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class SplashScreen extends StatelessWidget {
 
             // Tagline
             Text(
-              'Your journey to Division 1',
+              'Track your golf journey',
               style: AppTextStyles.bodyLarge.copyWith(
                 color: Colors.white.withOpacity(0.8),
               ),

@@ -3,7 +3,7 @@ class AppConstants {
   AppConstants._();
 
   // App Info
-  static const String appName = 'D1 Golf Tracker';
+  static const String appName = 'HappyGolf';
   static const String appVersion = '1.0.0';
 
   // Supabase Configuration
@@ -85,9 +85,9 @@ class DevelopmentPhase {
     ),
     DevelopmentPhase(
       number: 4,
-      name: 'Recruitment',
+      name: 'Elite',
       ageRange: '16-18',
-      description: 'D1 exposure, recruiting process, college prep',
+      description: 'Elite performance, advanced competition',
       targetHandicap: 2.0,
     ),
   ];
@@ -100,9 +100,9 @@ class DevelopmentPhase {
   }
 }
 
-/// D1 Benchmark targets
-class D1Benchmarks {
-  D1Benchmarks._();
+/// Elite performance benchmark targets
+class EliteBenchmarks {
+  EliteBenchmarks._();
 
   // Scoring
   static const double scoringAverage = 74.0;

@@ -23,7 +23,7 @@ class DashboardScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('D1 Golf Tracker'),
+        title: const Text('HappyGolf'),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
@@ -280,7 +280,7 @@ class DashboardScreen extends ConsumerWidget {
                   const Icon(Icons.star, color: Colors.white, size: 20),
                   const SizedBox(width: 8),
                   Text(
-                    'Final phase - D1 ready!',
+                    'Final phase - Elite level!',
                     style: AppTextStyles.labelMedium.copyWith(color: Colors.white),
                   ),
                 ],
@@ -449,7 +449,7 @@ class DashboardScreen extends ConsumerWidget {
         ),
         const SizedBox(height: 8),
         _MilestoneTile(
-          title: 'Complete ${player.currentPhase < 4 ? "Phase ${player.currentPhase}" : "D1 Journey"}',
+          title: 'Complete ${player.currentPhase < 4 ? "Phase ${player.currentPhase}" : "Golf Journey"}',
           progress: _calculatePhaseProgress(player),
           target: 'Age range: ${phase.ageRange}',
         ),

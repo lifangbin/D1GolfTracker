@@ -6,7 +6,7 @@ import '../../../../app/theme.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../shared/widgets/app_card.dart';
 
-/// Analytics screen showing performance stats and D1 benchmarks
+/// Analytics screen showing performance stats and elite benchmarks
 class AnalyticsScreen extends ConsumerStatefulWidget {
   const AnalyticsScreen({super.key});
 
@@ -81,10 +81,10 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           _buildParPerformance(),
           const SizedBox(height: 24),
 
-          // D1 Benchmarks
-          Text('D1 Benchmarks', style: AppTextStyles.titleLarge),
+          // Elite Benchmarks
+          Text('Elite Benchmarks', style: AppTextStyles.titleLarge),
           const SizedBox(height: 12),
-          _buildD1Benchmarks(),
+          _buildEliteBenchmarks(),
           const SizedBox(height: 32),
         ],
       ),
@@ -106,8 +106,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _StatCard(
                   label: 'Putts/Round',
                   value: '31.5',
-                  target: D1Benchmarks.puttsPerRound.toString(),
-                  isGood: 31.5 <= D1Benchmarks.puttsPerRound,
+                  target: EliteBenchmarks.puttsPerRound.toString(),
+                  isGood: 31.5 <= EliteBenchmarks.puttsPerRound,
                 ),
               ),
               const SizedBox(width: 12),
@@ -115,8 +115,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _StatCard(
                   label: '1-Putt %',
                   value: '32%',
-                  target: '${D1Benchmarks.onePuttPercent.toInt()}%',
-                  isGood: 32 >= D1Benchmarks.onePuttPercent,
+                  target: '${EliteBenchmarks.onePuttPercent.toInt()}%',
+                  isGood: 32 >= EliteBenchmarks.onePuttPercent,
                 ),
               ),
             ],
@@ -128,8 +128,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _StatCard(
                   label: '3-Putt %',
                   value: '4.5%',
-                  target: '${D1Benchmarks.threePuttPercent}%',
-                  isGood: 4.5 <= D1Benchmarks.threePuttPercent,
+                  target: '${EliteBenchmarks.threePuttPercent}%',
+                  isGood: 4.5 <= EliteBenchmarks.threePuttPercent,
                 ),
               ),
               const SizedBox(width: 12),
@@ -154,8 +154,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _StatCard(
                   label: 'Up & Down %',
                   value: '48%',
-                  target: '${D1Benchmarks.upAndDownPercent.toInt()}%',
-                  isGood: 48 >= D1Benchmarks.upAndDownPercent,
+                  target: '${EliteBenchmarks.upAndDownPercent.toInt()}%',
+                  isGood: 48 >= EliteBenchmarks.upAndDownPercent,
                 ),
               ),
               const SizedBox(width: 12),
@@ -163,8 +163,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _StatCard(
                   label: 'Sand Save %',
                   value: '38%',
-                  target: '${D1Benchmarks.sandSavePercent.toInt()}%',
-                  isGood: 38 >= D1Benchmarks.sandSavePercent,
+                  target: '${EliteBenchmarks.sandSavePercent.toInt()}%',
+                  isGood: 38 >= EliteBenchmarks.sandSavePercent,
                 ),
               ),
             ],
@@ -196,7 +196,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _buildRadialStat(
                   label: 'FIR',
                   value: 62,
-                  target: D1Benchmarks.firPercent.toInt(),
+                  target: EliteBenchmarks.firPercent.toInt(),
                   subtitle: 'Fairways in Reg',
                 ),
               ),
@@ -205,7 +205,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _buildRadialStat(
                   label: 'GIR',
                   value: 52,
-                  target: D1Benchmarks.girPercent.toInt(),
+                  target: EliteBenchmarks.girPercent.toInt(),
                   subtitle: 'Greens in Reg',
                 ),
               ),
@@ -222,8 +222,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _StatCard(
                   label: 'Birdie Rate',
                   value: '22%',
-                  target: '${D1Benchmarks.par5BirdieRate.toInt()}%',
-                  isGood: 22 >= D1Benchmarks.par5BirdieRate,
+                  target: '${EliteBenchmarks.par5BirdieRate.toInt()}%',
+                  isGood: 22 >= EliteBenchmarks.par5BirdieRate,
                 ),
               ),
               const SizedBox(width: 12),
@@ -231,8 +231,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
                 child: _StatCard(
                   label: 'Avg Score',
                   value: '5.3',
-                  target: '${D1Benchmarks.par5Average}',
-                  isGood: 5.3 <= D1Benchmarks.par5Average,
+                  target: '${EliteBenchmarks.par5Average}',
+                  isGood: 5.3 <= EliteBenchmarks.par5Average,
                 ),
               ),
             ],
@@ -416,8 +416,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           child: _StatCard(
             label: 'Par 3 Avg',
             value: '3.4',
-            target: '${D1Benchmarks.par3Average}',
-            isGood: 3.4 <= D1Benchmarks.par3Average,
+            target: '${EliteBenchmarks.par3Average}',
+            isGood: 3.4 <= EliteBenchmarks.par3Average,
           ),
         ),
         const SizedBox(width: 12),
@@ -425,8 +425,8 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           child: _StatCard(
             label: 'Par 4 Avg',
             value: '4.5',
-            target: '${D1Benchmarks.par4Average}',
-            isGood: 4.5 <= D1Benchmarks.par4Average,
+            target: '${EliteBenchmarks.par4Average}',
+            isGood: 4.5 <= EliteBenchmarks.par4Average,
           ),
         ),
         const SizedBox(width: 12),
@@ -434,15 +434,15 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           child: _StatCard(
             label: 'Par 5 Avg',
             value: '5.3',
-            target: '${D1Benchmarks.par5Average}',
-            isGood: 5.3 <= D1Benchmarks.par5Average,
+            target: '${EliteBenchmarks.par5Average}',
+            isGood: 5.3 <= EliteBenchmarks.par5Average,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildD1Benchmarks() {
+  Widget _buildEliteBenchmarks() {
     return AppCard(
       margin: EdgeInsets.zero,
       child: Column(
@@ -450,29 +450,29 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen>
           _buildBenchmarkRow(
             'Scoring Average',
             '76.8',
-            '${D1Benchmarks.scoringAverage}',
-            76.8 <= D1Benchmarks.scoringAverage,
+            '${EliteBenchmarks.scoringAverage}',
+            76.8 <= EliteBenchmarks.scoringAverage,
           ),
           const Divider(height: 16),
           _buildBenchmarkRow(
             'Putts per Round',
             '31.5',
-            '${D1Benchmarks.puttsPerRound}',
-            31.5 <= D1Benchmarks.puttsPerRound,
+            '${EliteBenchmarks.puttsPerRound}',
+            31.5 <= EliteBenchmarks.puttsPerRound,
           ),
           const Divider(height: 16),
           _buildBenchmarkRow(
             'GIR %',
             '52%',
-            '${D1Benchmarks.girPercent.toInt()}%',
-            52 >= D1Benchmarks.girPercent,
+            '${EliteBenchmarks.girPercent.toInt()}%',
+            52 >= EliteBenchmarks.girPercent,
           ),
           const Divider(height: 16),
           _buildBenchmarkRow(
             'FIR %',
             '62%',
-            '${D1Benchmarks.firPercent.toInt()}%',
-            62 >= D1Benchmarks.firPercent,
+            '${EliteBenchmarks.firPercent.toInt()}%',
+            62 >= EliteBenchmarks.firPercent,
           ),
         ],
       ),
@@ -726,7 +726,7 @@ class _StatCard extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                'D1: $target',
+                'Target: $target',
                 style: AppTextStyles.labelSmall,
               ),
             ],

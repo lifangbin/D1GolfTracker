@@ -105,7 +105,7 @@ class ProfileScreen extends ConsumerWidget {
           _ActionButton(
             icon: Icons.school,
             label: 'Academic Records',
-            subtitle: 'Track GPA & NCAA eligibility',
+            subtitle: 'Track GPA & academic progress',
             color: AppColors.secondary,
             onTap: () => context.push('/academic'),
           ),

@@ -1,14 +1,14 @@
-# D1 Golf Tracker - App Store Listing
+# HappyGolf - App Store Listing
 
 ## App Name
-D1 Golf Tracker
+HappyGolf
 
 ## Subtitle (30 chars max)
-Track Your Golf Journey to D1
+Track Your Golf Journey
 
 ## Description (4000 chars max)
 
-D1 Golf Tracker is the ultimate companion app for junior golfers and their families who are pursuing NCAA Division 1 golf scholarships. Track your progress, manage your handicap, and stay on top of your development milestones.
+HappyGolf is the ultimate companion app for junior golfers and their families. Track your progress, manage your handicap, and stay on top of your development milestones as you grow your game.
 
 **KEY FEATURES**
 
@@ -23,13 +23,13 @@ D1 Golf Tracker is the ultimate companion app for junior golfers and their famil
 • View tournament history and statistics
 
 **Development Milestones**
-• Phase-based milestone tracking (Foundation, Development, Competition, Recruitment)
+• Phase-based milestone tracking (Foundation, Development, Competition, Elite)
 • Age-appropriate goals for each development stage
 • Track progress across skills, fitness, mental game, and competition
 
 **Performance Analytics**
 • Detailed scoring statistics
-• D1 benchmark comparisons
+• Benchmark comparisons by age group
 • Short game and ball striking analysis
 • Visual progress charts
 
@@ -39,14 +39,14 @@ D1 Golf Tracker is the ultimate companion app for junior golfers and their famil
 • Monitor skill development over time
 
 **Academic Records**
-• Track GPA for NCAA eligibility
+• Track GPA and academic progress
 • Monitor course grades
-• Stay on top of academic requirements
+• Balance golf and education goals
 
 **PDF Export**
 • Generate professional player profiles
 • Export tournament history
-• Share progress with coaches and recruiters
+• Share progress with coaches
 
 **GA CONNECT Integration**
 • Automatic handicap sync from golf.com.au
@@ -57,12 +57,12 @@ Perfect for:
 • Junior golfers ages 8-18
 • Parents tracking their child's golf development
 • Golf coaches monitoring player progress
-• Anyone pursuing a D1 golf scholarship
+• Any golfer wanting to track their improvement
 
-Start your journey to Division 1 golf today!
+Start your golf journey today!
 
 ## Keywords (100 chars max)
-golf,handicap,junior golf,D1,NCAA,tournament,training,milestone,scholarship,analytics,tracker
+golf,handicap,junior golf,tournament,training,milestone,analytics,tracker,score,progress
 
 ## Categories
 - Primary: Sports
@@ -97,7 +97,7 @@ golf,handicap,junior golf,D1,NCAA,tournament,training,milestone,scholarship,anal
 "Achieve Development Goals"
 
 ### Screenshot 5 - Analytics
-"D1 Benchmark Comparison"
+"Track Your Progress"
 
 ### Screenshot 6 - GA Connect
 "Sync with Golf Australia"
@@ -109,7 +109,7 @@ Initial release featuring:
 • Handicap tracking with GA CONNECT integration
 • Tournament management
 • Development milestone tracking
-• Performance analytics with D1 benchmarks
+• Performance analytics
 • Training log
 • Academic records
 • PDF export for player profiles
