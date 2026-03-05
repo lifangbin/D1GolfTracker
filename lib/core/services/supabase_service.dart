@@ -73,10 +73,9 @@ class SupabaseService {
 
   /// Reset password
   Future<void> resetPassword(String email) async {
-    await client.auth.resetPasswordForEmail(
-      email,
-      redirectTo: 'com.d1golf.d1GolfTracker://reset-password',
-    );
+    // Use Supabase's default redirect which will handle the token exchange
+    // The app will receive the auth state change via onAuthStateChange
+    await client.auth.resetPasswordForEmail(email);
   }
 
   /// Update password
