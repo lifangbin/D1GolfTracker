@@ -8,7 +8,7 @@ class AppConstants {
 
   // Supabase Configuration
   static const String supabaseUrl = 'https://znzcvssbsvzgmorizwga.supabase.co';
-  static const String supabaseAnonKey = 'sb_publishable_O5jjsumS4LrDQ2L-zryieA_JGxRxPU0';
+  static const String supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpuemN2c3Nic3Z6Z21vcml6d2dhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzU3OTQsImV4cCI6MjA4Nzg1MTc5NH0.Jc9VOa37PT9D2GccsFR3T2V6GWy7nKLzXJb3rCjhwgQ';
 
   // GolfAPI.io Configuration
   static const String golfApiBaseUrl = 'https://api.golfapi.io';
