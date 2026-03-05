@@ -73,7 +73,10 @@ class SupabaseService {
 
   /// Reset password
   Future<void> resetPassword(String email) async {
-    await client.auth.resetPasswordForEmail(email);
+    await client.auth.resetPasswordForEmail(
+      email,
+      redirectTo: 'com.d1golf.d1GolfTracker://reset-password',
+    );
   }
 
   /// Update password
