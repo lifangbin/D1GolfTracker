@@ -298,14 +298,34 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             onPressed: () async {
               Navigator.pop(context);
               final controller = ref.read(authControllerProvider.notifier);
-              final success = await controller.resetPassword(email);
-              if (success && mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Password reset email sent!'),
-                    backgroundColor: AppColors.success,
-                  ),
-                );
+              try {
+                final success = await controller.resetPassword(email);
+                if (mounted) {
+                  if (success) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Password reset email sent! Check your inbox.'),
+                        backgroundColor: AppColors.success,
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Failed to send reset email. Please try again.'),
+                        backgroundColor: AppColors.error,
+                      ),
+                    );
+                  }
+                }
+              } catch (e) {
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Error: ${e.toString()}'),
+                      backgroundColor: AppColors.error,
+                    ),
+                  );
+                }
               }
             },
             child: const Text('Send'),
