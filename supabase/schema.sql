@@ -390,6 +390,57 @@ CREATE POLICY "Users can update own milestones" ON milestones
     );
 
 -- ============================================
+-- PLAYER MILESTONES TABLE (Progress tracking for predefined milestones)
+-- ============================================
+CREATE TABLE player_milestones (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    player_id UUID NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+    milestone_id TEXT NOT NULL, -- References predefined milestone definitions in app
+
+    is_completed BOOLEAN DEFAULT FALSE,
+    completed_at TIMESTAMPTZ,
+    notes TEXT,
+    media_url TEXT,
+
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+
+    UNIQUE(player_id, milestone_id)
+);
+
+-- Enable RLS
+ALTER TABLE player_milestones ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own player milestones" ON player_milestones
+    FOR SELECT USING (
+        player_id IN (SELECT id FROM players WHERE user_id = auth.uid())
+    );
+
+CREATE POLICY "Users can insert own player milestones" ON player_milestones
+    FOR INSERT WITH CHECK (
+        player_id IN (SELECT id FROM players WHERE user_id = auth.uid())
+    );
+
+CREATE POLICY "Users can update own player milestones" ON player_milestones
+    FOR UPDATE USING (
+        player_id IN (SELECT id FROM players WHERE user_id = auth.uid())
+    );
+
+CREATE POLICY "Users can delete own player milestones" ON player_milestones
+    FOR DELETE USING (
+        player_id IN (SELECT id FROM players WHERE user_id = auth.uid())
+    );
+
+-- Index for performance
+CREATE INDEX idx_player_milestones_player_id ON player_milestones(player_id);
+CREATE INDEX idx_player_milestones_milestone_id ON player_milestones(milestone_id);
+
+-- Apply updated_at trigger
+CREATE TRIGGER update_player_milestones_updated_at
+    BEFORE UPDATE ON player_milestones
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- ============================================
 -- USER COURSES TABLE (manually added courses)
 -- ============================================
 CREATE TABLE user_courses (

@@ -485,9 +485,13 @@ class DashboardScreen extends ConsumerWidget {
               leading: const Icon(Icons.logout, color: AppColors.error),
               title: const Text('Sign Out', style: TextStyle(color: AppColors.error)),
               onTap: () async {
+                // Get references before any async operations
+                final authController = ref.read(authControllerProvider.notifier);
+                final playerNotifier = ref.read(playerNotifierProvider.notifier);
                 Navigator.pop(context);
-                await ref.read(authControllerProvider.notifier).signOut();
-                ref.read(playerNotifierProvider.notifier).clear();
+                // Clear player first, then sign out
+                playerNotifier.clear();
+                await authController.signOut();
               },
             ),
           ],

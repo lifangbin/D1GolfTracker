@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/auth/presentation/screens/login_screen.dart';
+import '../features/auth/presentation/screens/reset_password_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
 import '../features/auth/presentation/screens/profile_setup_screen.dart';
 import '../features/auth/presentation/screens/profile_screen.dart';
@@ -21,6 +22,15 @@ import '../features/auth/presentation/providers/auth_provider.dart';
 import '../features/auth/presentation/providers/player_provider.dart';
 import 'shell_screen.dart';
 
+/// Track if user is in password reset flow (to prevent redirect after OTP verification)
+final isInPasswordResetFlowProvider = StateProvider<bool>((ref) => false);
+
+/// Track the current step in password reset flow (persists across widget rebuilds)
+final resetPasswordStepProvider = StateProvider<int>((ref) => 0);
+
+/// Track the email being used for password reset
+final resetPasswordEmailProvider = StateProvider<String>((ref) => '');
+
 /// Route names for navigation
 class AppRoutes {
   AppRoutes._();
@@ -38,6 +48,7 @@ class AppRoutes {
   static const String profileSetup = '/profile/setup';
   static const String profileEdit = '/profile/edit';
   static const String settings = '/settings';
+  static const String resetPassword = '/reset-password';
   static const String academic = '/academic';
   static const String addRound = '/add-round';
   static const String scorecard = '/scorecard/:roundId';
@@ -47,57 +58,76 @@ class AppRoutes {
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);
   final playerState = ref.watch(playerNotifierProvider);
+  final isInPasswordResetFlow = ref.watch(isInPasswordResetFlowProvider);
 
   return GoRouter(
     initialLocation: AppRoutes.splash,
     debugLogDiagnostics: true,
     redirect: (context, state) {
       final isLoggedIn = authState.valueOrNull != null;
-      final isLoggingIn = state.matchedLocation == AppRoutes.login;
-      final isSplash = state.matchedLocation == AppRoutes.splash;
-      final isProfileSetup = state.matchedLocation == AppRoutes.profileSetup;
+      final currentPath = state.matchedLocation;
+      final isLoggingIn = currentPath == AppRoutes.login;
+      final isSplash = currentPath == AppRoutes.splash;
+      final isProfileSetup = currentPath == AppRoutes.profileSetup;
+      final isResetPassword = currentPath == AppRoutes.resetPassword;
 
       // If still loading auth state, stay on splash
       if (authState.isLoading) {
         return isSplash ? null : AppRoutes.splash;
       }
 
-      // If not logged in and not on login page, redirect to login
-      if (!isLoggedIn && !isLoggingIn) {
+      // If not logged in and not on login or reset password page, redirect to login
+      if (!isLoggedIn && !isLoggingIn && !isResetPassword) {
         return AppRoutes.login;
       }
 
       // If logged in, check for player profile
       if (isLoggedIn) {
+        // Allow user to stay on reset password page to complete the flow
+        // (OTP verification logs user in, but they still need to set new password)
+        // Check both the current path AND the flow state flag
+        if (isResetPassword || isInPasswordResetFlow) {
+          return isResetPassword ? null : AppRoutes.resetPassword;
+        }
+
         final hasProfile = playerState.valueOrNull != null;
         final isLoadingProfile = playerState.isLoading;
         final hasError = playerState.hasError;
 
-        // Still loading profile, allow splash or setup
-        if (isLoadingProfile && (isSplash || isProfileSetup)) {
-          return null;
+        // Still loading profile - stay where we are (splash or profile setup)
+        if (isLoadingProfile) {
+          if (isSplash || isProfileSetup) {
+            return null; // Stay on current page while loading
+          }
+          // For other pages, wait on splash
+          return AppRoutes.splash;
         }
 
-        // If there's an error loading profile, try going to dashboard anyway
-        // The dashboard will handle the error state
-        if (hasError && (isSplash || isProfileSetup)) {
-          return AppRoutes.dashboard;
+        // Profile loading complete - now decide where to go
+
+        // If there's an error loading profile, go to dashboard
+        // The dashboard will handle showing appropriate error state
+        if (hasError) {
+          if (isSplash || isProfileSetup || isLoggingIn) {
+            return AppRoutes.dashboard;
+          }
+          return null; // Already on a valid page
         }
 
-        // No profile and not on setup screen and not loading, redirect to profile setup
-        if (!hasProfile && !isProfileSetup && !isLoadingProfile) {
+        // No profile - must go to profile setup
+        if (!hasProfile) {
+          if (isProfileSetup) {
+            return null; // Already on profile setup, stay here
+          }
           return AppRoutes.profileSetup;
         }
 
-        // Has profile and on login/splash/setup, redirect to dashboard
-        if (hasProfile && (isLoggingIn || isSplash || isProfileSetup)) {
-          return AppRoutes.dashboard;
-        }
-
-        // If on splash/login and not loading, go to dashboard
-        // This handles edge cases where profile might exist but state is stale
-        if ((isSplash || isLoggingIn) && !isLoadingProfile) {
-          return AppRoutes.dashboard;
+        // Has profile - redirect away from auth/setup pages to dashboard
+        if (hasProfile) {
+          if (isLoggingIn || isSplash || isProfileSetup) {
+            return AppRoutes.dashboard;
+          }
+          return null; // Already on a valid authenticated page
         }
       }
 
@@ -114,6 +144,15 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.login,
         builder: (context, state) => const LoginScreen(),
+      ),
+
+      // Reset password screen
+      GoRoute(
+        path: AppRoutes.resetPassword,
+        builder: (context, state) {
+          final email = state.extra as String?;
+          return ResetPasswordScreen(email: email);
+        },
       ),
 
       // Profile setup screen (first-time flow)

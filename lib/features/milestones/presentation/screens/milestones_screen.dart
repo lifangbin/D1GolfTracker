@@ -516,30 +516,37 @@ class _MilestoneDetailSheetState extends ConsumerState<_MilestoneDetailSheet> {
                     Row(
                       children: [
                         Expanded(
-                          child: OutlinedButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text('Cancel'),
+                          child: SizedBox(
+                            height: 48,
+                            child: OutlinedButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('Cancel'),
+                            ),
                           ),
                         ),
                         const SizedBox(width: AppSpacing.md),
                         Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () => _markMilestone(context),
-                            icon: Icon(
-                              isCompleted
-                                  ? Icons.undo
-                                  : Icons.check_circle_outline,
-                            ),
-                            label: Text(
-                              isCompleted
-                                  ? 'Mark Incomplete'
-                                  : 'Mark Complete',
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: isCompleted
-                                  ? AppColors.warning
-                                  : AppColors.success,
-                              foregroundColor: Colors.white,
+                          child: SizedBox(
+                            height: 48,
+                            child: ElevatedButton.icon(
+                              onPressed: () => _markMilestone(context),
+                              icon: Icon(
+                                isCompleted
+                                    ? Icons.undo
+                                    : Icons.check_circle_outline,
+                                size: 20,
+                              ),
+                              label: Text(
+                                isCompleted
+                                    ? 'Incomplete'
+                                    : 'Complete',
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: isCompleted
+                                    ? AppColors.warning
+                                    : AppColors.success,
+                                foregroundColor: Colors.white,
+                              ),
                             ),
                           ),
                         ),

@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../domain/player.dart';
 import '../../data/player_repository.dart';
+import 'auth_provider.dart';
 
 /// Provider for PlayerRepository
 final playerRepositoryProvider = Provider<PlayerRepository>((ref) {
@@ -16,9 +18,23 @@ final currentPlayerProvider = FutureProvider<Player?>((ref) async {
 /// StateNotifier for player state management
 class PlayerNotifier extends StateNotifier<AsyncValue<Player?>> {
   final PlayerRepository _repository;
+  final Ref _ref;
+  User? _lastUser;
 
-  PlayerNotifier(this._repository) : super(const AsyncValue.loading()) {
+  PlayerNotifier(this._repository, this._ref) : super(const AsyncValue.loading()) {
     loadPlayer();
+    // Listen to auth state changes and reload player when user changes
+    _ref.listen<AsyncValue<User?>>(authStateProvider, (previous, next) {
+      final currentUser = next.valueOrNull;
+      // If user changed (logged in or different user), reload player data
+      if (currentUser != null && currentUser.id != _lastUser?.id) {
+        _lastUser = currentUser;
+        loadPlayer();
+      } else if (currentUser == null) {
+        // User logged out
+        _lastUser = null;
+      }
+    });
   }
 
   Future<void> loadPlayer() async {
@@ -111,7 +127,7 @@ class PlayerNotifier extends StateNotifier<AsyncValue<Player?>> {
 final playerNotifierProvider =
     StateNotifierProvider<PlayerNotifier, AsyncValue<Player?>>((ref) {
   final repository = ref.watch(playerRepositoryProvider);
-  return PlayerNotifier(repository);
+  return PlayerNotifier(repository, ref);
 });
 
 /// Provider to check if player profile exists
